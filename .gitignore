@@ -11,6 +11,9 @@
 # production
 /build
 
+# CMS
+/sanity
+
 # misc
 .DS_Store
 .env.local

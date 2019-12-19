@@ -1,23 +1,22 @@
 import React from "react";
-import shortid from "shortid";
-import {
-  HomeDispatch as Dispatch,
-  HomeState as State
-} from "../../utils/types";
+import { HomeState } from "./duck/types";
 
-export default function HomeComponent(redux: {
-  state: State;
-  dispatch: Dispatch;
+function HomeComponent(redux: {
+  currentState: HomeState;
+  changeGreeting: (newGreeting: string) => void;
 }): JSX.Element {
   return (
     <div>
-      {redux.state.greeting}
+      {redux.currentState.greeting}
       <input
         name="greeting"
         type="text"
-        value="Type a messaage"
-        onChange={redux.dispatch.changeGreeting}
+        value={redux.currentState.greeting}
+        placeholder="change the greeting"
+        onChange={e => redux.changeGreeting(e.target.value)}
       />
     </div>
   );
 }
+
+export default HomeComponent;
